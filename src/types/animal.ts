@@ -12,4 +12,5 @@ export interface Animal {
   disponivel_apadrinhamento?: boolean;
   status?: string;
   foto?: string[];
+    
 }
