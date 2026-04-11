@@ -19,6 +19,7 @@ import { DonationModal } from "./components/modals/DonationModal";
 import { SponsorshipModal } from "./components/modals/SponsorshipModal";
 import { AdoptionModal } from "./components/modals/AdoptionModal";
 import { Animal } from "./types/animal";
+import { AdminPage } from "./pages/adminPage";
 
 type HeaderPage = "home" | "search" | "animal";
 
@@ -31,6 +32,8 @@ export default function App() {
   const [donateDialogOpen, setDonateDialogOpen] = useState(false);
   const [sponsorDialogOpen, setSponsorDialogOpen] = useState(false);
   const [adoptDialogOpen, setAdoptDialogOpen] = useState(false);
+  const [page, setPage] = useState("home");
+const [user, setUser] = useState<any>(null);
 
   const currentPage = useMemo<HeaderPage>(() => {
     if (location.pathname === "/") return "home";
@@ -79,7 +82,12 @@ export default function App() {
           onNavigate={handleNavigate}
           onDonateClick={() => setDonateDialogOpen(true)}
           onSponsorClick={() => setSponsorDialogOpen(true)}
+          onAdminClick={() => setPage("admin")}
         />
+
+        {page === "admin" && (
+  <AdminPage onBack={() => setPage("home")} />
+)}
 
         <Routes>
           <Route

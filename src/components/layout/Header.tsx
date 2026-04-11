@@ -22,9 +22,10 @@ interface HeaderProps {
   onNavigate: (page: 'home' | 'search') => void;
   onDonateClick: () => void;
   onSponsorClick: () => void;
+  onAdminClick: () => void;
 }
 
-export function Header({ currentPage, onNavigate, onDonateClick, onSponsorClick }: HeaderProps) {
+export function Header({ currentPage, onNavigate, onDonateClick, onSponsorClick, onAdminClick }: HeaderProps) {
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -70,6 +71,14 @@ export function Header({ currentPage, onNavigate, onDonateClick, onSponsorClick 
 
             {!isMobile ? (
               <Box sx={{ display: 'flex', gap: 2, alignItems: 'center' }}>
+                  <Button
+    variant="contained"
+    size="large"
+    onClick={onAdminClick}
+      color="primary"
+  >
+    Painel Admin
+  </Button>
                 <Button
                   color="primary"
                   onClick={() => onNavigate('home')}
